@@ -1,8 +1,7 @@
 {
   "name": "react-noty",
   "version": "1.0.0",
-  "description": "notify confirm toast",
-  "main": "index.js",
+  "description": "react toast, confirm",
   "scripts": {
     "build": "set NODE_ENV=production&&webpack -d --define process.env.NODE_ENV='\"production\"' --progress --colors --optimize-minimize",
     "start": "node dev-server.js",
@@ -13,6 +12,7 @@
     "config",
     "toast"
   ],
+  "main": "src/componets/Toast.js",
   "author": "hx",
   "license": "ISC",
   "devDependencies": {
