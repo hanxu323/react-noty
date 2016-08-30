@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+}
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .2);
+  z-index: 999;
+}
+
+.toast {
+  .pos() {
+    position: fixed;
+    top: 50%;
+    bottom: 50%;
+  }
+  .toast-box, .loading-box {
+    min-width: 100px;
+    min-height: 80px;
+    .pos();
+    background: rgba(0, 0, 0, .8);
+    color: #eee;
+    padding: 8px;
+    left: 50%;
+    border-radius: 5px;
+  }
+
+  .confirm-box {
+    .pos();
+    background: rgba(0, 0, 0, .8);
+  }
+}
