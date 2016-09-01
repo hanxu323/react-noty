@@ -13,15 +13,13 @@ export default class Toast extends Component {
     componentWillMount() {
         this.setState({
             show: false,
-            message: '',
-            overlay: true
+            message: ''
         });
     }
 
-    show(message, timeout = 1500) {
+    show(message, timeout = 2000) {
         this.setState({
             show: true,
-            overlay: true,
             message,
             type: 'toast'
         });
@@ -37,7 +35,6 @@ export default class Toast extends Component {
         if (isShow) {
             this.setState({
                 show: true,
-                overlay: false,
                 type: 'loading'
             });
         } else if (this.state.type === 'loading') { // avoid close message toast
@@ -50,16 +47,22 @@ export default class Toast extends Component {
     confirm(message, option = {}) {
         this.setState({
             show: true,
-            overlay: false,
             message: message,
             confirmOption: option,
             type: 'confirm'
         });
     }
 
+    alert(message, option = {}) {
+        const {callback} = option;
+        this.confirm(message, {
+            showCancel: false,
+            onConfirm: callback
+        });
+    }
+
     render() {
         let content = '';
-        let overlay = '';
         if (this.state.show) {
             switch (this.state.type) {
                 case 'toast': content = (<ToastBox message={this.state.message}/>); break;
@@ -70,15 +73,10 @@ export default class Toast extends Component {
                                 onClose={() => {this.setState({show: false})}}/>
                 ); break;
             }
-
-            if (this.state.overlay) {
-                overlay = (<div className='overlay'></div>);
-            }
         }
 
         return (
-            <div className='toast'>
-                {overlay}
+            <div className={this.state.show ? 'toast show': 'toast'}>
                 {content}
             </div>
         );
@@ -93,17 +91,39 @@ function validate() {
     }
 }
 
-export function show(...args) {
-    validate();
-    toastIns.show(...args);
-}
-
-export function loading(...args) {
-    validate();
-    toastIns.loading(...args);
-}
-
-export function confirm(...args) {
-    validate();
-    toastIns.confirm(...args);
-}
+export const toast = {
+    show: (...args) => {
+        validate();
+        toastIns.show(...args);
+    },
+    success: (message = '操作成功', timeout = 1500) => {
+        validate();
+        toastIns.show((
+            <div className='success'>
+                <span className='icon icon-check-alt'></span>
+                {message}
+            </div>
+        ), timeout);
+    },
+    error: (message = '操作失败', timeout = 1500) => {
+        validate();
+        toastIns.show((
+            <div className='error'>
+                <span className='icon icon-x-alt'></span>
+                {message}
+            </div>
+        ), timeout);
+    },
+    loading: (...args) => {
+        validate();
+        toastIns.loading(...args);
+    },
+    confirm: (...args) => {
+        validate();
+        toastIns.confirm(...args);
+    },
+    alert: (...args) => {
+        validate();
+        toastIns.alert(...args);
+    }
+};

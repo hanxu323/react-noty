@@ -1,18 +1,18 @@
 {
   "name": "react-noty",
-  "version": "1.0.0",
+  "version": "1.0.11",
   "description": "react toast, confirm",
   "scripts": {
-    "build": "set NODE_ENV=production&&webpack -d --define process.env.NODE_ENV='\"production\"' --progress --colors --optimize-minimize",
     "start": "node dev-server.js",
-    "lint": "eslint \"src/react/**\""
+    "lint": "eslint \"src/react/**\"",
+    "compile": "babel -d bin/ src/"
   },
   "keywords": [
     "notify",
     "config",
     "toast"
   ],
-  "main": "src/componets/Toast.js",
+  "main": "bin/react/components/Toast.js",
   "author": "hx",
   "license": "ISC",
   "devDependencies": {

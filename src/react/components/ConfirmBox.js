@@ -4,7 +4,7 @@ export default class ConfirmBox extends Component {
 
     render() {
         let {
-            onConfirm, showConfirm = false, confirmText = '确定',
+            onConfirm, showConfirm = true, confirmText = '确定',
             onCancel, showCancel = true, cancelText = '关闭'
             } = this.props.option;
         let confirmBtn = '';
@@ -12,7 +12,7 @@ export default class ConfirmBox extends Component {
 
         if (showConfirm) {
             confirmBtn = (
-                <button onClick={() => {
+                <button className='btn btn-primary' onClick={() => {
                     this.props.onClose();
                     if (onConfirm) {
                         onConfirm();
@@ -25,7 +25,7 @@ export default class ConfirmBox extends Component {
 
         if (showCancel) {
             cancelBtn = (
-                <button onClick={() => {
+                <button className='btn' onClick={() => {
                     this.props.onClose();
                     if (onCancel) {
                         onCancel();
@@ -40,9 +40,9 @@ export default class ConfirmBox extends Component {
                 <div className='confirm-message'>
                     {this.props.message}
                 </div>
-                <div className='confirm-ft'>
-                    {confirmBtn}
+                <div className={showConfirm && showCancel ? 'confirm-ft double' : 'confirm-ft'}>
                     {cancelBtn}
+                    {confirmBtn}
                 </div>
             </div>
         );
