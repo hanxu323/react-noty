@@ -57,7 +57,7 @@ var Toast = function (_Component) {
         value: function show(message) {
             var _this2 = this;
 
-            var timeout = arguments.length <= 1 || arguments[1] === undefined ? 1500 : arguments[1];
+            var timeout = arguments.length <= 1 || arguments[1] === undefined ? 2000 : arguments[1];
 
             this.setState({
                 show: true,
@@ -75,9 +75,12 @@ var Toast = function (_Component) {
     }, {
         key: 'loading',
         value: function loading(isShow) {
+            var message = arguments.length <= 1 || arguments[1] === undefined ? '加载中' : arguments[1];
+
             if (isShow) {
                 this.setState({
                     show: true,
+                    message: message,
                     type: 'loading'
                 });
             } else if (this.state.type === 'loading') {
@@ -121,7 +124,7 @@ var Toast = function (_Component) {
                     case 'toast':
                         content = _react2.default.createElement(_ToastBox2.default, { message: this.state.message });break;
                     case 'loading':
-                        content = _react2.default.createElement(_LoadingBox2.default, null);break;
+                        content = _react2.default.createElement(_LoadingBox2.default, { message: this.state.message });break;
                     case 'confirm':
                         content = _react2.default.createElement(_ConfirmBox2.default, { message: this.state.message,
                             option: this.state.confirmOption,

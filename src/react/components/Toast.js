@@ -31,10 +31,11 @@ export default class Toast extends Component {
         }, timeout);
     }
 
-    loading(isShow) {
+    loading(isShow, message = '加载中') {
         if (isShow) {
             this.setState({
                 show: true,
+                message,
                 type: 'loading'
             });
         } else if (this.state.type === 'loading') { // avoid close message toast
@@ -66,7 +67,7 @@ export default class Toast extends Component {
         if (this.state.show) {
             switch (this.state.type) {
                 case 'toast': content = (<ToastBox message={this.state.message}/>); break;
-                case 'loading': content = (<LoadingBox />); break;
+                case 'loading': content = (<LoadingBox message={this.state.message}/>); break;
                 case 'confirm': content = (
                     <ConfirmBox message={this.state.message}
                                 option={this.state.confirmOption}

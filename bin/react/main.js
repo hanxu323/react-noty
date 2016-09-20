@@ -41,24 +41,38 @@ var Page = function (_React$Component) {
     }, {
         key: 'openSuccess',
         value: function openSuccess() {
-            _Toast.toast.success("操作成功");
+            _Toast.toast.success("success");
         }
     }, {
         key: 'openError',
         value: function openError() {
-            _Toast.toast.error("操作失败");
+            _Toast.toast.error("failed");
         }
     }, {
         key: 'openLoading',
         value: function openLoading() {
-            _Toast.toast.loading(true);
-            //setTimeout(() => toast.loading(false), 2000);
+            _Toast.toast.loading(true, _react2.default.createElement(
+                'h2',
+                null,
+                _react2.default.createElement(
+                    'strong',
+                    null,
+                    'loading...'
+                )
+            ));
+            setTimeout(function () {
+                return _Toast.toast.loading(false);
+            }, 200000);
         }
     }, {
         key: 'openConfirm',
         value: function openConfirm() {
-            //toast.confirm('您确认要xxx吗');
-            _Toast.toast.alert('提示信息1111');
+            _Toast.toast.confirm('confirm message');
+        }
+    }, {
+        key: 'openAlert',
+        value: function openAlert() {
+            _Toast.toast.alert('alert message');
         }
     }, {
         key: 'render',
@@ -91,6 +105,11 @@ var Page = function (_React$Component) {
                     'button',
                     { onClick: this.openError },
                     'error'
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { onClick: this.openAlert },
+                    'alert'
                 )
             );
         }

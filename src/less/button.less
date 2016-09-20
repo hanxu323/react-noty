@@ -1,0 +1,70 @@
+@import "mixin/borders";
+@import "var";
+
+//
+// Button Variants mixin
+// ------------------------------
+
+.button-variant(@color; @background: #fff;) {
+  background-color: @background;
+  color: @color;
+
+  //&:hover,
+  //&:focus {
+  //  background-color: lighten(@background, 5%);
+  //  color: @color;
+  //  outline: none;
+  //  text-decoration: none;
+  //}
+  &:active {
+    background: darken(@background, 5%);
+  }
+}
+
+// 按钮，白底，有颜色的字
+.btn {
+  height: @item-height;
+  line-height: @item-height;
+  text-align: center;
+  border: none;
+  display: block;
+  font-family: @default-font-family;
+  font-size: @item-font-size;
+  width: 100%;
+  background: #fff;
+  .button-variant(@color-default);
+
+  &.btn-primary {
+    .button-variant(@color-primary);
+  }
+
+  &.btn-danger {
+    .button-variant(@color-danger);
+  }
+
+  // 白字，有颜色的按钮
+  &.btn-solid {
+    .button-variant(#fff; @btn-primary-color);
+  }
+  &.btn-solid-danger {
+    .button-variant(#fff; @color-danger);
+  }
+
+  // 小号
+  &.btn-sm {
+    font-size: @default-font-size;
+    height: @item-height-sm;
+    line-height: @item-height-sm;
+  }
+
+  &.radius {
+    border-radius: @btn-radius;
+  }
+
+  &.btn-inline {
+    width: auto;
+    padding-left: @2unit;
+    padding-right: @2unit;
+  }
+
+}

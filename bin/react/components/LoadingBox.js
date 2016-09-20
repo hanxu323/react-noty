@@ -33,11 +33,7 @@ var LoadingBox = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'loading-box' },
-                _react2.default.createElement(
-                    'span',
-                    null,
-                    '加载中'
-                )
+                this.props.message
             );
         }
     }]);

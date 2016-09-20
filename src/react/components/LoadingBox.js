@@ -5,7 +5,7 @@ export default class LoadingBox extends Component {
     render() {
         return (
             <div className='loading-box'>
-                <span>loading...</span>
+                {this.props.message}
             </div>
         );
     }

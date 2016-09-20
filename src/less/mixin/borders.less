@@ -1,0 +1,152 @@
+@import "vendor-prefixes";
+
+@item-border-color: #e0e0e0;
+
+//
+// Retina Borders
+// ------------------------------
+
+// top
+
+.border-top(@color: @item-border-color) {
+  position: relative;
+
+  &::before {
+    .size(100%, 1px);
+    background-color: @color;
+    top: -1px;
+    content: " ";
+    left: 0;
+    position: absolute;
+  }
+
+  // simulate a 1px border on retina screens
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    &::before {
+      .scaleY(0.5);
+      .transform-origin(0 0);
+    }
+  }
+}
+
+// left
+
+.border-left(@color: @item-border-color) {
+  position: relative;
+
+  &::before {
+    background-color: @color;
+    bottom: 0;
+    content: " ";
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1px;
+  }
+
+  // simulate a 1px border on retina screens
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    &::before {
+      .scaleX(0.5);
+      .transform-origin(0 0);
+    }
+  }
+}
+
+// bottom
+
+.border-bottom(@color: @item-border-color) {
+  position: relative;
+
+  &::before {
+    .size(100%, 1px);
+    background-color: @color;
+    bottom: -1px;
+    content: " ";
+    left: 0;
+    position: absolute;
+  }
+
+  // simulate a 1px border on retina screens
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    &::before {
+      .scaleY(0.5);
+      .transform-origin(0 0);
+    }
+  }
+}
+
+// right
+
+.border-right(@color: @item-border-color) {
+  position: relative;
+
+  &::before {
+    .size(1px, 100%);
+    background-color: @color;
+    right: 0;
+    content: " ";
+    position: absolute;
+  }
+
+  // simulate a 1px border on retina screens
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    &::before {
+      .scaleX(0.5);
+      .transform-origin(0 0);
+    }
+  }
+}
+
+// top and bottom
+
+.border-top-and-bottom(@color: @item-border-color) {
+  position: relative;
+
+  &::after,
+  &::before {
+    .size(100%, 1px);
+    background-color: @color;
+    content: " ";
+    left: 0;
+    position: absolute;
+  }
+  &::before {
+    top: -1px;
+  }
+  &::after {
+    bottom: -1px;
+  }
+
+  // simulate a 1px border on retina screens
+  @media (-webkit-min-device-pixel-ratio: 2) {
+    &::after,
+    &::before {
+      .scaleY(0.5);
+    }
+
+    &::before {
+      .transform-origin(0 bottom);
+    }
+
+    &::after {
+      .transform-origin(0 top);
+    }
+  }
+}
+
+.border-all(@color: @item-border-color; @radius: 0) {
+  &::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    .square(200%);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    .scale(0.5);
+    .transform-origin(left top);
+    border: 1px solid @color;
+    border-radius: @radius;
+  }
+}

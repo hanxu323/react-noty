@@ -19,8 +19,8 @@ class Page extends React.Component {
     }
 
     openLoading() {
-        toast.loading(true);
-        setTimeout(() => toast.loading(false), 2000);
+        toast.loading(true, (<h2><strong>loading...</strong></h2>));
+        setTimeout(() => toast.loading(false), 200000);
     }
 
     openConfirm() {
